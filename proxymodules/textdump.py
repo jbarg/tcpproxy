@@ -6,9 +6,7 @@ class Module:
         self.name = 'Text display'
         self.description = 'Simply print the received data as text'
 
-    def execute(self, *params):
-
-        data = params[0]
+    def execute(self, data):
         print data
         return data
 

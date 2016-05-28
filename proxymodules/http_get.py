@@ -3,15 +3,14 @@
 
 class Module:
     def __init__(self):
-        self.name = 'fake HTTP GET Header'
-        self.description = 'Simply adds a fake HTTP GET header. This is quite usefull if you want to inspect the payload in tools like BurpSuite'
+        self.name = 'http_post'
+        self.description = 'Prepend HTTP header'
 
-    def execute(self, *params):
+    def execute(self, data):
+        http = "POST / HTTP/1.1\nHost: tcpproxy\n"
+        http += "Content-Length: " + str(len(data))
+        return http + "\n\n" + data
 
-        data = params[0]
-        http = "GET / HTTP/1.1\nHost: tcpproxy\n\n"
-
-        return http + data
 
 if __name__ == '__main__':
     print 'This module is not supposed to be executed alone!'
