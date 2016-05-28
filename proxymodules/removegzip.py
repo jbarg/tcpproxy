@@ -9,7 +9,9 @@ class Module:
         # I chose to replace gzip instead of removing it to keep the parsing
         # logic as simple as possible.
 
-    def execute(self, data):
+    def execute(self, *params):
+
+        data = params[0]
         try:
             # split at \r\n\r\n to split the request into header and body
             header, body = data.split('\r\n\r\n', 1)

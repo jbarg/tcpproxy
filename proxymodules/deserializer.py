@@ -10,13 +10,16 @@ class Module:
     """
     This is a quick PoC and definitely needs to be modified to be useful.
     """
+
     def __init__(self):
         self.is_jython = 'java' in platform.system().lower()
         self.name = 'Number Changer'
         self.description = 'Deserialize Java objects' if self.is_jython else \
                            'Deserialize Java objects (needs jython)'
 
-    def execute(self, data):
+    def execute(self, *params):
+
+        data = params[0]
         # this is a quick and dirty PoC to show that jython can be used to
         # deserialize Java objects on the fly, manipulate them and send them
         # on their way.

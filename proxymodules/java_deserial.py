@@ -17,7 +17,9 @@ class Module:
         self.description = 'Deserialization' if self.is_jython else \
                            'Deserialization (needs jython)'
 
-    def execute(self, data):
+    def execute(self, *params):
+
+        data = params[0]
         # this is a quick and dirty PoC to show that jython can be used to
         # deserialize Java objects on the fly, manipulate them and send them
         # on their way.

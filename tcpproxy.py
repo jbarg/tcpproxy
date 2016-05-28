@@ -129,9 +129,9 @@ def handle_data(data, modules, dont_chain, incoming=False):
     for m in modules:
         print ("> > > > in: " if incoming else "< < < < out: ") + m.name
         if dont_chain:
-            m.execute(data)
+            m.execute(data, incoming)
         else:
-            data = m.execute(data)
+            data = m.execute(data, incoming)
     return data
 
 

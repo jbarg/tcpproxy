@@ -6,7 +6,9 @@ class Module:
         self.name = 'fake HTTP GET Header'
         self.description = 'Simply adds a fake HTTP GET header. This is quite usefull if you want to inspect the payload in tools like BurpSuite'
 
-    def execute(self, data):
+    def execute(self, *params):
+
+        data = params[0]
         http = "GET / HTTP/1.1\nHost: tcpproxy\n\n"
 
         return http + data
