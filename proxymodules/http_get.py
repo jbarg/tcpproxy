@@ -6,7 +6,9 @@ class Module:
         self.name = 'http_post'
         self.description = 'Prepend HTTP header'
 
-    def execute(self, data):
+    def execute(self, *params):
+        data = params[0]
+
         http = "POST / HTTP/1.1\nHost: tcpproxy\n"
         http += "Content-Length: " + str(len(data))
         return http + "\n\n" + data

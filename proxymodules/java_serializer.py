@@ -5,6 +5,7 @@ if 'java' in platform.system().lower():
     import java.io as io
     from com.thoughtworks.xstream import XStream
 
+
 class Module:
     def __init__(self):
         self.is_jython = 'java' in platform.system().lower()
@@ -12,7 +13,8 @@ class Module:
         self.description = 'Serialization of XStream XML data' if self.is_jython else \
                            'serialization of XStream XML data (needs jython)'
 
-    def execute(self, data):
+    def execute(self, *params):
+        data = params[0]
         if not self.is_jython:
             print '[!] This module can only be used in jython!'
             return data
@@ -21,7 +23,8 @@ class Module:
         xs = XStream()
         serial = xs.fromXML(data)
 
-        # writing created Java object to and serializing it with ObjectOutputStream
+        # writing created Java object to and serializing it with
+        # ObjectOutputStream
         bos = io.ByteArrayOutputStream()
         oos = io.ObjectOutputStream(bos)
         oos.writeObject(serial)

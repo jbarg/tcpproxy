@@ -5,6 +5,7 @@ if 'java' in platform.system().lower():
     import java.io as io
     from com.thoughtworks.xstream import XStream
 
+
 class Module:
     def __init__(self):
         self.is_jython = 'java' in platform.system().lower()
@@ -12,7 +13,8 @@ class Module:
         self.description = 'Deserialization of Java objects' if self.is_jython else \
                            'Deserialization of Java objects (needs jython)'
 
-    def execute(self, data):
+    def execute(self, *params):
+        data = params[0]
         if not self.is_jython:
             print '[!] This module can only be used in jython!'
             return data

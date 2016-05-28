@@ -13,7 +13,8 @@ class Module:
         else:
             return '\n' * 2
 
-    def execute(self, data):
+    def execute(self, *params):
+        data = params[0]
         if data.startswith('HTTP/1.'):
             delimiter = detect_linebreak(data)
             data = data.split(delimiter, 1)[1]

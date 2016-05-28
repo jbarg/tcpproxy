@@ -6,7 +6,9 @@ class Module:
         self.name = 'http_ok'
         self.description = 'Prepend HTTP response header'
 
-    def execute(self, data):
+    def execute(self, *params):
+        data = params[0]
+
         http = "HTTP/1.1 200 OK\nServer: tcpproxy\n"
         http += "Content-Length: " + str(len(data))
         return http + "\n\n" + data
