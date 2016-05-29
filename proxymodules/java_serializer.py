@@ -5,23 +5,14 @@ if 'java' in platform.system().lower():
     import java.io as io
     from com.thoughtworks.xstream import XStream
 
-
 class Module:
-    """
-    This is a quick PoC and definitely needs to be modified to be useful.
-    """
-
     def __init__(self):
         self.is_jython = 'java' in platform.system().lower()
-        self.name = 'java serialization'
-        self.description = 'serialization' if self.is_jython else \
-                           'serialization (needs jython)'
+        self.name = 'java_serialization'
+        self.description = 'Serialization of XStream XML data' if self.is_jython else \
+                           'serialization of XStream XML data (needs jython)'
 
     def execute(self, data):
-        # this is a quick and dirty PoC to show that jython can be used to
-        # deserialize Java objects on the fly, manipulate them and send them
-        # on their way.
-
         if not self.is_jython:
             print '[!] This module can only be used in jython!'
             return data
@@ -30,8 +21,7 @@ class Module:
         xs = XStream()
         serial = xs.fromXML(data)
 
-        # writing created Java object to and serializing it with
-        # ObjectOutputStream
+        # writing created Java object to and serializing it with ObjectOutputStream
         bos = io.ByteArrayOutputStream()
         oos = io.ObjectOutputStream(bos)
         oos.writeObject(serial)
