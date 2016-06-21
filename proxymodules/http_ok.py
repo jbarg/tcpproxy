@@ -2,9 +2,11 @@
 
 
 class Module:
-    def __init__(self):
-        self.name = 'http_ok'
+    def __init__(self, incoming=False, options=None):
+        # extract the file name from __file__. __file__ is proxymodules/name.py
+        self.name = __file__.rsplit('/', 1)[1].split('.')[0]
         self.description = 'Prepend HTTP response header'
+        self.incoming = incoming  # incoming means module is on -im chain
 
     def execute(self, data):
         http = "HTTP/1.1 200 OK\nServer: tcpproxy\n"
